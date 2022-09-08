@@ -68,7 +68,7 @@ export const getLink = (req, res) => {
                 console.log(error)
             } else {
                 if (foundUrl) {
-                    res.status(200).render(foundUrl.link)
+                    res.status(200).redirect(foundUrl.link)
                 } else {
                     res.status(404).send(foundUrl)
                 }
