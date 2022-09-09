@@ -20,6 +20,7 @@ mongoose
 app.use(express.json())
 app.use('/', allRoutes)
 
+
 app.listen(PORT, () => {
     console.log(`server running at port ${PORT}`)
 })
