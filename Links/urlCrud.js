@@ -16,16 +16,14 @@ const getRandomString = (len) => {
 
 export const getLink = (req, res) => {
     try {
-        link = req.body.link
-
-        Urls.findOne({ link : link }, (err, foundUrl) => {
+        Urls.findOne({ link : req.body.link }, (err, foundUrl) => {
             if (err) {
                 console.log(err)
             } else {
                 if (foundUrl) {
                     res.status(200).json({shortLink : foundUrl.shortLink})
                 } else {
-                    res.status(404).json({message : 'not found'})
+                    res.status(404).json({message : 'Link not found'})
                 }
             }
         })
