@@ -14,35 +14,35 @@ const getRandomString = (len) => {
     return randomString
 }
 
-export const getLink = (req, res) => {
-    try {
-        Urls.findOne({ link : req.body.link }, (err, foundUrl) => {
-            if (err) {
-                console.log(err)
-            } else {
-                if (foundUrl) {
-                    res.status(200).json({shortLink : foundUrl.shortLink})
-                } else {
-                    res.status(404).json({message : 'Link not found'})
-                }
-            }
-        })
-    } catch (error) {
-        console.log(error)
-        res.status(404).json({ message : error.message })
-    }
-}
+// export const getLink = (req, res) => {
+//     try {
+//         Urls.findOne({ link : req.body.link }, (err, foundUrl) => {
+//             if (err) {
+//                 console.log(err)
+//             } else {
+//                 if (foundUrl) {
+//                     res.status(200).json({shortLink : foundUrl.shortLink})
+//                 } else {
+//                     res.status(404).json({message : 'Link not found'})
+//                 }
+//             }
+//         })
+//     } catch (error) {
+//         console.log(error)
+//         res.status(404).json({ message : error.message })
+//     }
+// }
 
 export const postLink = (req, res) => {
     try {
         const shortLink = `${getRandomString(9)}`
-
+        
         Urls.findOne({ link: req.body.link }, (err, foundUrl) => {
             if (err) {
                 console.log(err)
             } else {
                 if (foundUrl) {
-                    res.status(200).json({ shortUrl: foundUrl.shortLink })
+                    res.status(200).json({ existing: true, shortUrl: foundUrl.shortLink })
                 } else {
                     Urls.findOne({ shortLink: shortLink }, (err, foundUrl) => {
                         if (err) {
@@ -62,15 +62,13 @@ export const postLink = (req, res) => {
                                     console.log(data)
                                 })
 
-                                res.status(200).json({ shortUrl: shortLink })
+                                res.status(200).json({ existing: false, shortUrl: shortLink })
                             }
                         }
                     })
                 }
             }
         })
-
-
     } catch (error) {
         console.log(error)
         // console.log(req.body)
@@ -101,6 +99,7 @@ export const redirectLink = (req, res) => {
 
 export const getAllLinks = (req, res) => {
     try {
+        console.log('asd');
         Urls.find({}, (err, foundUrls) => {
             if (err) {
                 console.log(err)
