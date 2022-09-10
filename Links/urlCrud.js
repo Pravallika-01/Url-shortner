@@ -99,7 +99,6 @@ export const redirectLink = (req, res) => {
 
 export const getAllLinks = (req, res) => {
     try {
-        console.log('asd');
         Urls.find({}, (err, foundUrls) => {
             if (err) {
                 console.log(err)
