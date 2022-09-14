@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
+
+*, *::after, *::before {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+
+body {
+    display: grid;
+    place-items: center;
+    grid-template-rows: auto 1fr auto;
+
+    height: 100vh;
+    font-size: 62.5%;
+    font-family: 'Comfortaa', 'cursive';
+}
+
+.logo {
+    padding: 2rem;
+}
+
+.footer {
+    background-color: rgb(6, 7, 61);
+    color: #fff;
+    width: 100vw;
+
+    font-size: 0.8rem;
+    text-transform: capitalize;
+
+    text-align: center;
+    --footer-height: 2.5rem;
+    line-height: var(--footer-height);
+    height: var(--footer-height);
+}
+
+.container {
+    display: grid;
+    gap: 2rem;
+}
+
+.linkStatus {
+    font-size: 0.8rem;
+}
+
+.response-container {
+    width: 100%;
+
+    display: grid;
+    place-items: center;
+
+    background-color: rgba(0, 137, 255, 0.12);
+
+    border-radius: 1.5rem;
+}
+
+.response {
+    margin-block: 1rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    text-align: center;
+    line-height: 1rem;
+}
+
+.response:hover {
+    text-decoration: underline;
+}
+
+.response:active {
+    color: purple;
+}
+
+form {
+    display: grid;
+    gap: 2rem;
+    width: max(400px, 40vw);
+    place-items: center;
+}
+
+input {
+    padding: 0.75rem;
+    border-radius: 1rem;
+    border: none;
+    outline: none;
+    width: 100%;
+    background-color: rgba(0, 137, 255, 0.12);
+    /* background-color: yellowgreen; */
+}
+
+input[type="submit"] {
+    cursor: pointer;
+    width: min(15rem, 90vw);
+    font-family: 'Comfortaa', 'cursive';
+
+    background-color: rgba(0, 137, 255, 0.5);
+    /* text-transform: uppercase; */
+}
+
+input[type="submit"]:hover {
+    box-shadow: rgba(0, 137, 255, 0.4) 5px 5px 10px;
+}
+
+.display{
+   visibility: hidden;
+}
