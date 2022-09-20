@@ -8,18 +8,22 @@ const statusMessage = document.getElementById('status')
 // const url = 'http://127.0.0.1:8000'
 const url = 'https://urlsrtnr.herokuapp.com'
 
+displaythem();
 
-const displaythem  = () => {
-    displayELement.forEach((e) => {
-        e.style.visibility = 'visible';
-    } )
+if (chunk) {
+    statusMessage.innerText = chunk.existing ? 'Linked Already Existed!!!' : 'Link Created Successfully.'
+    shortLink.innerText = `${url}/${chunk.shortUrl}`
+}
 
+else {
+    statusMessage.innerText = 'Please wait ...'
+    shortLink.innerText = 'Loading ...'
 }
 
 const hidethem = () => {
     displayELement.forEach((e) => {
         e.style.visibility = 'hidden';
-    } )
+    })
 
 }
 
@@ -39,7 +43,7 @@ postLink.addEventListener('click', () => {
 
 form.addEventListener('submit', async (event) => {
     event.preventDefault()
-    if(inputLink.value){
+    if (inputLink.value) {
         const data = { link: inputLink.value }
         const options = {
             method: 'POST',
@@ -48,20 +52,20 @@ form.addEventListener('submit', async (event) => {
             },
             body: JSON.stringify(data),
         }
-    
+
         const res = await fetch(`${url}/link`, options)
         const chunk = await res.json()
-        
-        if(chunk) {
-                displaythem();
-                statusMessage.innerText = chunk.existing ? 'Linked Already Existed!!!' : 'Link Created Successfully.'
-                shortLink.innerText = `${url}/${chunk.shortUrl}`
-            }
+
+        if (chunk) {
+            displaythem();
+            statusMessage.innerText = chunk.existing ? 'Linked Already Existed!!!' : 'Link Created Successfully.'
+            shortLink.innerText = `${url}/${chunk.shortUrl}`
+        }
     }
-    
+
 })
 
-shortLink.addEventListener('click', (e) =>{
+shortLink.addEventListener('click', (e) => {
     navigator.clipboard.writeText(shortLink.innerText);
     alert(`${shortLink.innerText} Copied to clipboard`)
 })
