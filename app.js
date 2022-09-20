@@ -7,7 +7,7 @@ dotenv.config()
 
 const app = express()
 const PORT = process.env.PORT || 8000
-const DB_URL = `mongodb+srv://mahesh0911:${process.env.DB_PASSWORD}@cluster0.o9nzlt9.mongodb.net/test`
+const DB_URL = `mongodb+srv://${process.env.DB_NAME}:${process.env.DB_PASSWORD}@cluster0.o9nzlt9.mongodb.net/test`
 import allRoutes from './Routes/urlRoutes.js'
 
 mongoose
